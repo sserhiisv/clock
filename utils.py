@@ -16,7 +16,8 @@ def get_location(ip):
 
 
 def get_local_time(request):
-    ip = request.headers.get('X-Forwarded-For', '127.0.0.1')
+    forwarded = request.headers.get('X-Forwarded-For', '127.0.0.1')
+    ip = forwarded.split(',')[0]
     if ip == '127.0.0.1':
         location = {'time_zone': 'UTC'}
     else:

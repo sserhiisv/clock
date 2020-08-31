@@ -1,0 +1,33 @@
+version: "3"
+
+networks:
+  default:
+    external:
+      name: network
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: web
+    command: python manage.py run --host 0.0.0.0 --port 8001
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    build: ./nginx/
+    links:
+    - web:web
+    volumes:
+    - ./nginx/sites-enabled/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+    - web
+    ports:
+    - "80:80"
+    environment:
+    - VIRTUAL_HOST=utctime.info
+    - LETSENCRYPT_HOST=utctime.info
+
+volumes:
+  db:

@@ -2,6 +2,8 @@ import pytz
 import requests
 import datetime
 
+import app
+
 
 def get_location(ip):
     url = f"https://freegeoip.app/json/{ip}"
@@ -14,12 +16,13 @@ def get_location(ip):
 
 
 def get_local_time(request):
-    ip = request.remote_addr
+    ip = request.headers.get('X-Forwarded-For', '127.0.0.1')
     if ip == '127.0.0.1':
         location = {'time_zone': 'UTC'}
     else:
         location = get_location(ip)
-    time_zone = location.get('time_zone', 'UTC')
+    time_zone = location.get('time_zone')
+    app.app.logger.info(time_zone)
     if time_zone == '':
         time_zone = 'UTC'
     zone = pytz.timezone(time_zone)

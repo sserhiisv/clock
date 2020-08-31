@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Current time</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101337444-5"></script>
 </head>
 <body>
     <div id="location">
@@ -36,14 +37,5 @@
 
     timerId = setInterval(update, 1000);
     update();
-</script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-101337444-5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-101337444-5');
 </script>
 </html>

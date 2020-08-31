@@ -23,6 +23,7 @@ def get_local_time(request):
         location = get_location(ip)
     time_zone = location.get('time_zone')
     app.app.logger.info(time_zone)
+    app.app.logger.info(ip)
     if time_zone == '':
         time_zone = 'UTC'
     zone = pytz.timezone(time_zone)

@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Current time</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101337444-5"></script>
-</head>
-<body>
-    <div id="location">
-        <span class="timezone">{{context.tzname}}</span>+<span class="delta">{{context.delta}}</span>
-        <span class="location">{{context.location}}</span>
-    </div>
-    <div id="date">
-        <span class="year">{{context.year}}</span>-<span class="month">{{context.month}}</span>-<span class="day">{{context.day}}</span>
-    </div>
-    <div id="clock">
-        <span class="hour">{{context.hour}}</span>:<span class="min">{{context.minute}}</span>:<span class="sec">{{context.second}}</span>
-    </div>
-</body>
-<script>
-    let timerId;
-    function update() {
-        let clock = document.getElementById('clock');
-        let date = new Date(); // (*)
-        let hours = date.getHours();
-        if (hours < 10) hours = '0' + hours;
-        clock.children[0].innerHTML = hours;
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        let minutes = date.getMinutes();
-        if (minutes < 10) minutes = '0' + minutes;
-        clock.children[1].innerHTML = minutes;
+        <title>Current time</title>
+        <script async="" src="./Current time_files/js"></script>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="location">
+            <span class="location">Location: {{context.location}}</span><br/>
+            <span class="timezone">Timezone: {{context.tzname}} </span>+<span class="delta">{{context.delta}}</span>
+        </div>
+        <div>
+            <span>Date: </span>
+            <span id="date">
+                <span class="year">{{context.year}}</span>/<span class="month">{{context.month}}</span>/<span class="day">{{context.day}}</span>
+            </span>
+        </div>
+        <div>
+            <span>Current time: </span>
+            <span id="clock">
+                <span class="hour">{{context.hour}}</span>:<span class="min">{{context.minute}}</span>:<span class="sec">{{context.second}}</span>
+            </span>
+        </div>
 
-        let seconds = date.getSeconds();
-        if (seconds < 10) seconds = '0' + seconds;
-        clock.children[2].innerHTML = seconds;
-    }
+        <script>
+            let timerId;
+            function update() {
+                let clock = document.getElementById('clock');
+                let date = new Date(); // (*)
+                let hours = date.getHours();
+                if (hours < 10) hours = '0' + hours;
+                clock.children[0].innerHTML = hours;
 
-    timerId = setInterval(update, 1000);
-    update();
-</script>
+                let minutes = date.getMinutes();
+                if (minutes < 10) minutes = '0' + minutes;
+                clock.children[1].innerHTML = minutes;
+
+                let seconds = date.getSeconds();
+                if (seconds < 10) seconds = '0' + seconds;
+                clock.children[2].innerHTML = seconds;
+            }
+
+            timerId = setInterval(update, 1000);
+            update();
+        </script>
+    </body>
 </html>

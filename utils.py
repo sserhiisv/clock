@@ -55,7 +55,10 @@ def get_city_time(city):
     geolocator = Nominatim(user_agent="test")
     location = geolocator.geocode(city)
 
-    time_zone = app.tz.tzNameAt(location.latitude, location.longitude)
+    if location:
+        time_zone = app.tz.tzNameAt(location.latitude, location.longitude)
+    else:
+        time_zone = None
 
     if not time_zone:
         time_zone = 'UTC'
@@ -77,7 +80,7 @@ def get_city_time(city):
         'timezone': timestamp.tzinfo.zone,
         'delta': delta_str,
         'location': time_zone,
-        'address': location.address,
+        'address': location.address if location else 'UTC',
         'success': success
     }
     return context

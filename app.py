@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, send_from_directory
 
-from utils import get_local_time
+from utils import get_local_time, get_city_time
 
 from logging.config import dictConfig
+from tzwhere import tzwhere
+
 
 dictConfig({
     'version': 1,
@@ -21,10 +23,18 @@ dictConfig({
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
+tz = tzwhere.tzwhere()
+
 
 @app.route('/')
 def time():
     context = get_local_time(request)
+    return render_template('base.html', context=context)
+
+
+@app.route('/<city>')
+def city_time(city):
+    context = get_city_time(city)
     return render_template('base.html', context=context)
 
 

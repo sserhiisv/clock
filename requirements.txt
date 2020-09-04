@@ -5,8 +5,11 @@ chardet==3.0.4
 click==7.1.2
 decorator==4.4.2
 Flask==1.1.2
+geographiclib==1.50
+geopy==2.0.0
 idna==2.10
 ipdb==0.13.3
+ipython==7.17.0
 ipython-genutils==0.2.0
 itsdangerous==1.1.0
 jedi==0.17.2
@@ -22,8 +25,10 @@ python-geoip==1.2
 python-geoip-geolite2==2015.303
 pytz==2020.1
 requests==2.24.0
+Shapely==1.7.1
 six==1.15.0
 traitlets==4.3.3
+tzwhere==3.0.3
 urllib3==1.25.10
 wcwidth==0.2.5
 Werkzeug==1.0.1

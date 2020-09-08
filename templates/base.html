@@ -80,7 +80,7 @@
             <a href="https://utctime.info/Paris" title="Paris">Paris</a>
             <a href="https://utctime.info/Berlin" title="Berlin">Berlin</a>
             <a href="https://utctime.info/Jakarta" title="Jakarta">Jakarta</a>
-            <a href="https://utctime.info/New Delhi" title="New Delhi">New Delhi</a>
+            <a href="https://utctime.info/New%20Delhi" title="New Delhi">New Delhi</a>
             <a href="https://utctime.info/Beijing" title="Beijing">Beijing</a>
             <a href="https://utctime.info/Pyongyang" title="Pyongyang">Pyongyang</a>
             <a href="https://utctime.info/Oslo" title="Oslo">Oslo</a>
@@ -90,7 +90,7 @@
             <a href="https://utctime.info/Bangkok" title="Bangkok">Bangkok</a>
             <a href="https://utctime.info/Kiev" title="Kiev">Kiev</a>
             <a href="https://utctime.info/London" title="London">London</a>
-            <a href="https://utctime.info/Abu Dhabi" title="Abu Dhabi">Abu Dhabi</a>
+            <a href="https://utctime.info/Abu%20Dhabi" title="Abu Dhabi">Abu Dhabi</a>
             <a href="https://utctime.info/Greenwich" title="UTC Greenwich">UTC Greenwich</a>
         </div>
 
@@ -104,9 +104,9 @@
     </body>
     <script>
       let timerId;
+      let clock = document.getElementById('clock');
+      let date = new Date(+clock.dataset.time);
       function update() {
-        let clock = document.getElementById('clock');
-        let date = new Date(+clock.dataset.time);
         let hours = date.getHours();
         if (hours < 10) hours = '0' + hours;
         clock.children[0].innerHTML = hours;
@@ -118,6 +118,7 @@
         let seconds = date.getSeconds();
         if (seconds < 10) seconds = '0' + seconds;
         clock.children[2].innerHTML = seconds;
+        date += 1000;
       }
 
       timerId = setInterval(update, 1000);

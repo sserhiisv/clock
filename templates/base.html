@@ -7,18 +7,45 @@
         <title>Current time</title>
         <style>
             body {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                margin-top: 0;
+            }
+            .logo {
+                display: inline-block;
+                margin-bottom: 10px;
+                padding: 20px;
+                background-color: #297975;
+            }
+            .logo a {
+                color: white;
                 font-size: 30px;
+                text-decoration: none;
+            }
+            #clock {
+                font-size: 8em;
+            }
+            .cities {
+                margin: 100px 0;
+            }
+            .cities a {
+                display: inline-block;
+                padding: 20px;
+                margin: 5px;
+                background-color: #297975;
+                color: white;
             }
         </style>
     </head>
     <body>
-        <div class="lg">
-            <h2>
+        <div>
+            <div class="logo">
                 <a href="https://utctime.info/" target="_top" title="utctime.info">UTC Time</a>
-            </h2>
+            </div>
+        </div>
+        <div>
+            <span>Current time: </span><br/>
+            <span id="clock" data-time={{context.time}}>
+                <span class="hour">{{context.hour}}</span>:<span class="min">{{context.minute}}</span>:<span class="sec">{{context.second}}</span>
+            </span>
         </div>
         {% if context.address %}
             <div>
@@ -37,12 +64,6 @@
             <span>Date: </span>
             <span id="date">
                 <span class="year">{{context.year}}</span>/<span class="month">{{context.month}}</span>/<span class="day">{{context.day}}</span>
-            </span>
-        </div>
-        <div>
-            <span>Current time: </span>
-            <span id="clock" data-time={{context.time}}>
-                <span class="hour">{{context.hour}}</span>:<span class="min">{{context.minute}}</span>:<span class="sec">{{context.second}}</span>
             </span>
         </div>
 
@@ -80,29 +101,28 @@
         <div>
             <p>Coordinated Universal Time (or UTC) is the primary time standard by which the world regulates clocks and time. It is within about 1 second of mean solar time at 0° longitude, and is not adjusted for daylight saving time. It is effectively a successor to Greenwich Mean Time (GMT).</p>
         </div>
-
-        <script>
-            let timerId;
-            function update() {
-                let clock = document.getElementById('clock');
-                let date = new Date(); // (*)
-                let hours = date.getHours();
-                if (hours < 10) hours = '0' + hours;
-                clock.children[0].innerHTML = hours;
-
-                let minutes = date.getMinutes();
-                if (minutes < 10) minutes = '0' + minutes;
-                clock.children[1].innerHTML = minutes;
-
-                let seconds = date.getSeconds();
-                if (seconds < 10) seconds = '0' + seconds;
-                clock.children[2].innerHTML = seconds;
-            }
-
-            timerId = setInterval(update, 1000);
-            update();
-        </script>
     </body>
+    <script>
+      let timerId;
+      function update() {
+        let clock = document.getElementById('clock');
+        let date = new Date(+clock.dataset.time);
+        let hours = date.getHours();
+        if (hours < 10) hours = '0' + hours;
+        clock.children[0].innerHTML = hours;
+
+        let minutes = date.getMinutes();
+        if (minutes < 10) minutes = '0' + minutes;
+        clock.children[1].innerHTML = minutes;
+
+        let seconds = date.getSeconds();
+        if (seconds < 10) seconds = '0' + seconds;
+        clock.children[2].innerHTML = seconds;
+      }
+
+      timerId = setInterval(update, 1000);
+      update();
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101337444-5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];

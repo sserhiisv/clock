@@ -106,6 +106,7 @@
       let timerId;
       let clock = document.getElementById('clock');
       let date = new Date(+clock.dataset.time);
+      console.log(clock)
       function update() {
         let hours = date.getHours();
         if (hours < 10) hours = '0' + hours;

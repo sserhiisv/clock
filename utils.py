@@ -43,7 +43,7 @@ def get_local_time(request):
         'minute': timestamp.minute,
         'second': timestamp.second,
         'tzname': timestamp.tzname(),
-        'time': timestamp.timestamp(),
+        'time': int(timestamp.timestamp()),
         'timezone': timestamp.tzinfo.zone,
         'delta': delta_str,
         'location': location.get('time_zone', 'UTC')
@@ -70,7 +70,7 @@ def get_city_time(city):
     delta = timestamp.utcoffset().seconds // 3600
     delta_str = f'0{delta}:00' if delta < 10 else f'{delta}:00'
     context = {
-        'time': timestamp.timestamp(),
+        'time': int(timestamp.timestamp()),
         'year': timestamp.year,
         'month': timestamp.month,
         'day': timestamp.day,

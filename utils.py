@@ -1,4 +1,5 @@
 import pytz
+import time
 import requests
 import datetime
 
@@ -35,7 +36,6 @@ def get_local_time(request):
     delta = timestamp.utcoffset().seconds // 3600
     delta_str = f'0{delta}:00' if delta < 10 else f'{delta}:00'
     context = {
-        # 'time': timestamp.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
         'year': timestamp.year,
         'month': timestamp.month,
         'day': timestamp.day,
@@ -43,7 +43,7 @@ def get_local_time(request):
         'minute': timestamp.minute,
         'second': timestamp.second,
         'tzname': timestamp.tzname(),
-        'time': int(timestamp.timestamp()),
+        'unixtime': int(time.mktime(timestamp.timetuple())),
         'timezone': timestamp.tzinfo.zone,
         'delta': delta_str,
         'location': location.get('time_zone', 'UTC')
@@ -70,7 +70,7 @@ def get_city_time(city):
     delta = timestamp.utcoffset().seconds // 3600
     delta_str = f'0{delta}:00' if delta < 10 else f'{delta}:00'
     context = {
-        'time': int(timestamp.timestamp()),
+        'unixtime': int(time.mktime(timestamp.timetuple())),
         'year': timestamp.year,
         'month': timestamp.month,
         'day': timestamp.day,

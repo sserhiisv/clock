@@ -20,13 +20,15 @@
                 <a href="https://utctime.info/" target="_top" title=utctime.info">UTC Time</a>
             </h2>
         </div>
-        <div>
-            <span id="address">
-                <span>Exect time in: </span>
-                <br/>
-                <span class="city">{{context.address}}</span>
-            </span>
-        </div>
+        {% if {{context.address}} %}
+            <div>
+                <span id="address">
+                    <span>Exect time in: </span>
+                    <br/>
+                    <span class="city">{{context.address}}</span>
+                </span>
+            </div>
+        {% endif %}
         <div id="location">
             <span class="location">Location: {{context.location}}</span><br/>
             <span class="timezone">Timezone: {{context.tzname}} </span>+<span class="delta">{{context.delta}}</span>

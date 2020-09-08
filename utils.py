@@ -35,7 +35,7 @@ def get_local_time(request):
     delta = timestamp.utcoffset().seconds // 3600
     delta_str = f'0{delta}:00' if delta < 10 else f'{delta}:00'
     context = {
-        'time': timestamp.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+        # 'time': timestamp.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
         'year': timestamp.year,
         'month': timestamp.month,
         'day': timestamp.day,
@@ -70,7 +70,7 @@ def get_city_time(city):
     delta = timestamp.utcoffset().seconds // 3600
     delta_str = f'0{delta}:00' if delta < 10 else f'{delta}:00'
     context = {
-        'time': timestamp.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+        'time': timestamp.timestamp(),
         'year': timestamp.year,
         'month': timestamp.month,
         'day': timestamp.day,

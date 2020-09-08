@@ -43,6 +43,7 @@ def get_local_time(request):
         'minute': timestamp.minute,
         'second': timestamp.second,
         'tzname': timestamp.tzname(),
+        'time': timestamp.timestamp(),
         'timezone': timestamp.tzinfo.zone,
         'delta': delta_str,
         'location': location.get('time_zone', 'UTC')

@@ -36,6 +36,11 @@ def get_local_time(request):
     delta = timestamp.utcoffset().seconds // 3600
     delta_str = f'0{delta}:00' if delta < 10 else f'{delta}:00'
     context = {
+        # 'time': timestamp.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+        # 'time': int(timestamp.strftime("%s")) * 1000,
+        'time': timestamp.strftime('%a %b %d %Y %H:%M:%S'),
+        'date': timestamp.strftime('%A, %d %B %Y'),
+        'week': timestamp.strftime('%V'),
         'year': timestamp.year,
         'month': timestamp.month,
         'day': timestamp.day,
@@ -48,6 +53,7 @@ def get_local_time(request):
         'delta': delta_str,
         'location': location.get('time_zone', 'UTC')
     }
+    # import ipdb; ipdb.set_trace()
     return context
 
 
@@ -70,7 +76,11 @@ def get_city_time(city):
     delta = timestamp.utcoffset().seconds // 3600
     delta_str = f'0{delta}:00' if delta < 10 else f'{delta}:00'
     context = {
-        'unixtime': int(time.mktime(timestamp.timetuple())),
+        # 'time': int(timestamp.strftime("%s")) * 1000,
+        # 'time': timestamp.strftime('%Y-%m-%d %H:%M:%S %Z%z'),
+        'time': timestamp.strftime('%a %b %d %Y %H:%M:%S'),
+        'date': timestamp.strftime('%A, %d %B %Y'),
+        'week': timestamp.strftime('%V'),
         'year': timestamp.year,
         'month': timestamp.month,
         'day': timestamp.day,
@@ -84,4 +94,7 @@ def get_city_time(city):
         'address': location.address if location else 'UTC',
         'success': success
     }
+    print(context)
+    print(int(timestamp.strftime("%s")) * 1000, int(timestamp.strftime("%s")))
+    # import ipdb; ipdb.set_trace()
     return context

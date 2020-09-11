@@ -2,12 +2,13 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="description" content="Global world time in any time zone and for any place."/>
+        <meta name="description" content="Check time in any time zone, in any place and by address"/>
 
-        <title>Current time</title>
+        <title>Global world time in any time zone at any place</title>
         <style>
             body {
                 margin-top: 0;
+                font-family: 'Arial';
             }
             .logo {
                 display: inline-block;
@@ -19,9 +20,12 @@
                 color: white;
                 font-size: 30px;
                 text-decoration: none;
+                font-family: 'Arial';
             }
             #clock {
-                font-size: 8em;
+                font-size: 10em;
+                font-family: 'Courier';
+                font-style: bold;
             }
             .cities {
                 margin: 100px 0;
@@ -33,6 +37,7 @@
                 background-color: #297975;
                 color: white;
                 text-decoration: none;
+                font-family: 'Arial';
             }
         </style>
     </head>
@@ -43,34 +48,28 @@
             </div>
         </div>
         <div>
-            <span>Current time: </span><br/>
-            <span id="clock" data-time="{{context.unixtime}}000">
-                <span class="hour">{{context.hour}}</span>:<span class="min">{{context.minute}}</span>:<span class="sec">{{context.second}}</span>
-            </span>
-        </div>
-        {% if context.address %}
-            <div>
-                <span id="address">
-                    <span>Exect time in: </span>
-                    <br/>
-                    <span class="city">{{context.address}}</span>
-                </span>
-            </div>
-        {% endif %}
-        <div id="location">
-            <span class="location">Location: {{context.location}}</span><br/>
-            <span class="timezone">Timezone: {{context.tzname}} </span>+<span class="delta">{{context.delta}}</span>
-        </div>
-        <div>
-            <span>Date: </span>
-            <span id="date">
-                <span class="year">{{context.year}}</span>/<span class="month">{{context.month}}</span>/<span class="day">{{context.day}}</span>
-            </span>
-        </div>
 
-        <div>
-            <p>UTCTIME.INFO - time for any place and time zone</p>
+            <H1>Current time {% if context.address %}at {{context.address}} {% endif %}</H1>
+            <br/>
+            <span id="clock" data-time="{{context.time}}">
+                <span class="hour" id="hours">{{context.hour}}</span>:<span class="min">{{context.minute}}</span>:<span class="sec">{{context.second}}</span>
+            </span>
         </div>
+        <!--{% if context.address %}-->
+            <!--<div>-->
+                <!--<span id="address">-->
+                    <!--<h2>Exect time in: </h2>-->
+                    <!--<span class="city">{{context.address}}</span>-->
+                <!--</span>-->
+            <!--</div>-->
+        <!--{% endif %}-->
+        <!--<div id="location">-->
+            <!--<span class="location">Location: {{context.location}} /</span>-->
+            <!--<span class="timezone">{{context.tzname}} </span>+<span class="delta">{{context.delta}}</span>-->
+        <!--</div>-->
+
+        <h1><span id="date">{{context.date}}</span>, <span class="week">week {{context.week}}</span></h1>
+        <h2>{{context.location}} {{context.tzname}} +{{context.delta}}</h2>
 
         <div class="cities">
             <a href="https://utctime.info/Tokyo" title="Tokyo">Tokyo</a>
@@ -83,6 +82,7 @@
             <a href="https://utctime.info/Jakarta" title="Jakarta">Jakarta</a>
             <a href="https://utctime.info/New%20Delhi" title="New Delhi">New Delhi</a>
             <a href="https://utctime.info/Beijing" title="Beijing">Beijing</a>
+
             <a href="https://utctime.info/Pyongyang" title="Pyongyang">Pyongyang</a>
             <a href="https://utctime.info/Oslo" title="Oslo">Oslo</a>
             <a href="https://utctime.info/Moscow" title="">Moscow</a>
@@ -93,6 +93,41 @@
             <a href="https://utctime.info/London" title="London">London</a>
             <a href="https://utctime.info/Abu%20Dhabi" title="Abu Dhabi">Abu Dhabi</a>
             <a href="https://utctime.info/Greenwich" title="UTC Greenwich">UTC Greenwich</a>
+
+            <a href="https://utctime.info/Shanghai" title="Shanghai">Shanghai</a>
+            <a href="https://utctime.info/Sao%20Paulo" title="Sao Paulo">Sao Paulo</a>
+            <a href="https://utctime.info/Mexico" title=Mexico"">Mexico</a>
+            <a href="https://utctime.info/Cairo" title="Cairo">Cairo</a>
+            <a href="https://utctime.info/Dhaka" title="Dhaka">Dhaka</a>
+            <a href="https://utctime.info/Mumbai" title="Mumbai">Mumbai</a>
+            <a href="https://utctime.info/Osaka" title="Osaka">Osaka</a>
+            <a href="https://utctime.info/Istanbul" title="Istanbul">Istanbul</a>
+            <a href="https://utctime.info/Buenos%20Aires" title="Buenos Aires">Buenos Aires</a>
+            <a href="https://utctime.info/Kolkata" title="Kolkata">Kolkata</a>
+
+            <a href="https://utctime.info/Lagos" title="Lagos">Lagos</a>
+            <a href="https://utctime.info/Manila" title="Manila">Manila</a>
+            <a href="https://utctime.info/Tianjin" title="Tianjin">Tianjin</a>
+            <a href="https://utctime.info/Rio%20De%20Janeiro" title="Rio De Janeiro">Rio De Janeiro</a>
+            <a href="https://utctime.info/Lima" title="Lima">Lima</a>
+            <a href="https://utctime.info/New%20York" title="New York">New York</a>
+            <a href="https://utctime.info/Hong%20Kong" title="Hong Kong">Hong Kong</a>
+            <a href="https://utctime.info/Madrid" title="Madrid">Madrid</a>
+            <a href="https://utctime.info/Toronto" title="Toronto">Toronto</a>
+            <a href="https://utctime.info/Alexandria" title="Alexandria">Alexandria</a>
+            <a href="https://utctime.info/Sydney" title="Sydney">Sydney</a>
+
+            <a href="https://utctime.info/Addis%20Ababa" title="Addis Ababa">Addis Ababa</a>
+            <a href="https://utctime.info/Brasilia" title="Brasilia">Brasilia</a>
+            <a href="https://utctime.info/Rome" title="Rome">Rome</a>
+            <a href="https://utctime.info/Tel%20Aviv" title="Tel Aviv">Tel Aviv</a>
+            <a href="https://utctime.info/Montreal" title="Montreal">Montreal</a>
+            <a href="https://utctime.info/Los%20Angeles" title="Los Angeles">Los Angeles</a>
+            <a href="https://utctime.info/Casablanca" title="Casablanca">Casablanca</a>
+            <a href="https://utctime.info/Athens" title="Athens">Athens</a>
+            <a href="https://utctime.info/Milan" title="Milan">Milan</a>
+            <a href="https://utctime.info/Kuwait" title="Kuwait">Kuwait</a>
+            <a href="https://utctime.info/Dubai" title="Dubai">Dubai</a>
         </div>
 
         <div>
@@ -102,29 +137,34 @@
         <div>
             <p>Coordinated Universal Time (or UTC) is the primary time standard by which the world regulates clocks and time. It is within about 1 second of mean solar time at 0° longitude, and is not adjusted for daylight saving time. It is effectively a successor to Greenwich Mean Time (GMT).</p>
         </div>
+
+        <div>
+            <p>UTCTIME.INFO - time for any place and time zone</p>
+        </div>
+
+        <span>Copyright © 2020</span>
     </body>
     <script>
       let timerId;
-      let clock = document.getElementById('clock');
-      let time = +clock.dataset.time;
-      function update() {
-        let date = new Date(time);
-        let hours = date.getHours();
-        if (hours < 10) hours = '0' + hours;
-        clock.children[0].innerHTML = hours;
+        let clock = document.getElementById('clock');
+        let date = new Date(clock.dataset.time);
+        function update() {
+          let hours = date.getHours();
+          if (hours < 10) hours = '0' + hours;
+          clock.children[0].innerHTML = hours;
 
-        let minutes = date.getMinutes();
-        if (minutes < 10) minutes = '0' + minutes;
-        clock.children[1].innerHTML = minutes;
+          let minutes = date.getMinutes();
+          if (minutes < 10) minutes = '0' + minutes;
+          clock.children[1].innerHTML = minutes;
 
-        let seconds = date.getSeconds();
-        if (seconds < 10) seconds = '0' + seconds;
-        clock.children[2].innerHTML = seconds;
-        time += 1000;
-      }
+          let seconds = date.getSeconds();
+          if (seconds < 10) seconds = '0' + seconds;
+          clock.children[2].innerHTML = seconds;
+          date.setSeconds(seconds + 1);
+        }
 
-      timerId = setInterval(update, 1000);
-      update();
+        timerId = setInterval(update, 1000);
+        update();
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101337444-5"></script>
     <script>
